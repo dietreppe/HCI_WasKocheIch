@@ -1,6 +1,10 @@
 var db;
-var slideshow_open = false;
+
 $(document).ready(function(){
+  var slideshow_open = false;
+  var ingredient_list = [];
+
+  /*==HIDE SLIDESHOW AT THE BEGINNING==*/
   $("#myCarousel").hide();
 
   /*
@@ -60,7 +64,7 @@ $(document).ready(function(){
 
 
   /*
-  ==SQL QUERY FOR CATEGORIES==
+  ==USER SELECTS CATEGORY==
   If one of the 4 categories on the top is clicked,
   the elements below in the slide element (carousel),
   are filled with the images of the ingredients of the specific categorie
@@ -77,7 +81,6 @@ $(document).ready(function(){
     }else{
       $("#myCarousel").show();
       slideshow_open = true;
-      console.log(slideshow_open);
       db.transaction(
         function(transaction) {
           transaction.executeSql(
@@ -132,6 +135,45 @@ $(document).ready(function(){
     }/*end else*/
 
   }));/*end of jqery onclick action on #fruecht */
+
+
+  /*==USER SELECTS INGREDIENT==*/
+  $("#element_one").on('click', (function(){
+    var ingredient_name = $("#element_one").attr("alt");
+    var already_in_list = false;
+
+    /*check if ingredient is already selected*/
+    for( var i = 0; i < ingredient_list.length; ++i ){
+      if( ingredient_list[ i ] == ingredient_name ){
+        already_in_list = true;
+      }
+    }
+
+    /*write html and save ingredient to ingredient_list*/
+    if( already_in_list == false ){
+      ingredient_list.push( ingredient_name );
+      $("#ingredient_list").append(
+        "<ul class='list-group'>" +
+          "<li class='list-group-item'>" +
+            "<button type='submit' class='btn btn-default'>" +
+              "<span class='glyphicon glyphicon-star-empty' aria-hidden='true'></span>" +
+              "<span class='sr-only'>Favorit</span>" +
+            "</button>" + " " +
+            $("#element_one").attr("alt") + " " +
+            "<button type='submit' class='btn btn-default'>" +
+              "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>" +
+              "<span class='sr-only'>Löschen</span>" +
+            "</button>" +
+          "</li>" +
+        "</ul>"
+      )
+    }else{
+      /*delete ingredient from ingredient_list and from the screen*/
+      var index = ingredient_list.indexOf( ingredient_name );
+      if( index > -1 ) ingredient_list.splice( index, 1 );
+      $("#ingredient_list").empty();
+    }
+  }));/*end of jquery onclick*/
 
 
 }); /*end of document ready*/
