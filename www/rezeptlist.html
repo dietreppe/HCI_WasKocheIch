@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/rezepte.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/database.js"></script>
+  <script language="JavaScript" src="js/rezepte.js"></script>
+  <title>Rezepte</title>
+
+  <style>
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+  </style>
+</head>
+<body bgcolor="#4444FF" >
+  <!-- SEARCHBAR, SETTINGS BUTTON ON TOP-->
+  <nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-color">
+        <form class="navbar-form navbar-left" role="search">
+        <!-- Go Back button -->
+        <a href=index.html>
+          <button type="button" class="btn btn-default">Go back</button>
+        </a>
+
+            Rezepte
+
+          <div class="float-right">
+
+            <button type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+              <span class="sr-only">Einstellungen</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  <!-- LIST OF MATCHING RECEPIES-->
+  <div class="container-fluid">
+    <ul class="list-group">
+
+      <script language="JavaScript" src="js/rezepte.js">rezepte();</script>
+
+
+    </ul>
+
+  </div> <!-- /.container-fluid -->
+
+
+</body>
+</html>
