@@ -82,28 +82,28 @@ $(document).ready(function(){
     db.transaction(
       function(transaction) {
         transaction.executeSql(
-          "INSERT INTO category VALUES (1,'fleisch','img/category/fleisch.png'); "
+          "INSERT INTO category VALUES (1,'Fleisch','img/category/fleisch.png'); "
         );
       }
     );
     db.transaction(
       function(transaction) {
         transaction.executeSql(
-          "INSERT INTO category VALUES (2,'getreide','img/category/getreide.png'); "
+          "INSERT INTO category VALUES (2,'Getreide','img/category/getreide.png'); "
         );
       }
     );
     db.transaction(
       function(transaction) {
         transaction.executeSql(
-          "INSERT INTO category VALUES (3,'milchprodukte','img/category/milchprodukte.png'); "
+          "INSERT INTO category VALUES (3,'Milchprodukte','img/category/milchprodukte.png'); "
         );
       }
     );
     db.transaction(
       function(transaction) {
         transaction.executeSql(
-          "INSERT INTO category VALUES (4,'fruechte','img/category/fruechte.png'); "
+          "INSERT INTO category VALUES (4,'Fruechte','img/category/fruechte.png'); "
         );
       }
     );
@@ -112,84 +112,84 @@ $(document).ready(function(){
     db.transaction(
       function(transaction) {
         transaction.executeSql(
-          "INSERT INTO ingredient VALUES (1,'apfel',0,'img/ingredient/apfel.png',4 ); "
+          "INSERT INTO ingredient VALUES (1,'Apfel',0,'img/ingredient/apfel.png',4 ); "
         );
       }
     );
     db.transaction(
       function(transaction) {
         transaction.executeSql(
-          "INSERT INTO ingredient VALUES (2,'banane',0,'img/ingredient/banane.png',4 ); "
+          "INSERT INTO ingredient VALUES (2,'Banane',0,'img/ingredient/banane.png',4 ); "
         );
       }
     );
     db.transaction(
       function(transaction) {
         transaction.executeSql(
-          "INSERT INTO ingredient VALUES (3,'blaubeeren',0,'img/ingredient/blaubeeren.png',4 ); "
+          "INSERT INTO ingredient VALUES (3,'Blaubeeren',0,'img/ingredient/blaubeeren.png',4 ); "
         );
       }
     );
     db.transaction(
       function(transaction) {
         transaction.executeSql(
-          "INSERT INTO ingredient VALUES (4,'broccoli',0,'img/ingredient/broccoli.png',4 ); "
+          "INSERT INTO ingredient VALUES (4,'Broccoli',0,'img/ingredient/broccoli.png',4 ); "
         );
       }
     );
     db.transaction(
       function(transaction) {
         transaction.executeSql(
-          "INSERT INTO ingredient VALUES (5,'pilze',0,'img/ingredient/pilze.png',4 ); "
+          "INSERT INTO ingredient VALUES (5,'Pilze',0,'img/ingredient/pilze.png',4 ); "
         );
       }
     );
     db.transaction(
       function(transaction) {
         transaction.executeSql(
-          "INSERT INTO ingredient VALUES (6,'erbsen',0,'img/ingredient/erbsen.png',4 ); "
+          "INSERT INTO ingredient VALUES (6,'Erbsen',0,'img/ingredient/erbsen.png',4 ); "
         );
       }
     );
     db.transaction(
       function(transaction) {
         transaction.executeSql(
-          "INSERT INTO ingredient VALUES (7,'erdbeere',0,'img/ingredient/erdbeere.png',4 ); "
+          "INSERT INTO ingredient VALUES (7,'Erdbeere',0,'img/ingredient/erdbeere.png',4 ); "
         );
       }
     );
     db.transaction(
       function(transaction) {
         transaction.executeSql(
-          "INSERT INTO ingredient VALUES (8,'karotte',0,'img/ingredient/karotte.png',4 ); "
+          "INSERT INTO ingredient VALUES (8,'Karotte',0,'img/ingredient/karotte.png',4 ); "
         );
       }
     );
     db.transaction(
       function(transaction) {
         transaction.executeSql(
-          "INSERT INTO ingredient VALUES (9,'kartoffel',0,'img/ingredient/kartoffel.png',4 ); "
+          "INSERT INTO ingredient VALUES (9,'Kartoffel',0,'img/ingredient/kartoffel.png',4 ); "
         );
       }
     );
     db.transaction(
       function(transaction) {
         transaction.executeSql(
-          "INSERT INTO ingredient VALUES (10,'kuerbis',0,'img/ingredient/kuerbis.png',4 ); "
+          "INSERT INTO ingredient VALUES (10,'Kuerbis',0,'img/ingredient/kuerbis.png',4 ); "
         );
       }
     );
     db.transaction(
       function(transaction) {
         transaction.executeSql(
-          "INSERT INTO ingredient VALUES (11,'melanzani',0,'img/ingredient/melanzani.png',4 ); "
+          "INSERT INTO ingredient VALUES (11,'Melanzani',0,'img/ingredient/melanzani.png',4 ); "
         );
       }
     );
     db.transaction(
       function(transaction) {
         transaction.executeSql(
-          "INSERT INTO ingredient VALUES (12,'paprika',0,'img/ingredient/paprika.png',4 ); "
+          "INSERT INTO ingredient VALUES (12,'Paprika',0,'img/ingredient/paprika.png',4 ); "
         );
       }
     );
@@ -198,7 +198,7 @@ $(document).ready(function(){
     db.transaction(
       function(transaction) {
         transaction.executeSql(
-          "INSERT INTO recipe VALUES (1,'eintopf','alles in den eintopf', 'img/ingredient/paprika.png' ); "
+          "INSERT INTO recipe VALUES (1,'Eintopf','alles in den eintopf', 'img/ingredient/paprika.png' ); "
         );
       }
     );
@@ -262,6 +262,8 @@ $(document).ready(function(){
               for( var i = 0; i < result.rows.length; i++ ){
                 row[ i ] = result.rows.item( i );
                 if( i == (result.rows.length-1) ){
+
+                  //first 16 elements
                   $("#element_one").attr({
                     "alt" : row[ 0 ].name,
                     "src" : row[ 0 ].image_link
@@ -294,6 +296,9 @@ $(document).ready(function(){
                     "alt" : row[ 7 ].name,
                     "src" : row[ 7 ].image_link
                   });
+
+                  //second sixteen elements
+
                 } /*end if*/
               } /*end for*/
             }, /*end function (transaction, result) */
@@ -307,41 +312,54 @@ $(document).ready(function(){
 
 
   /*==USER SELECTS INGREDIENT==*/
-  $("#element_one").on('click', (function(){
-    var ingredient_name = $("#element_one").attr("alt");
+  $(".thumbnail").on('click', (function(){
+    var ingredient_name = $(this).children('img').attr("alt");
     var already_in_list = false;
 
-    /*check if ingredient is already selected*/
-    for( var i = 0; i < ingredient_list.length; ++i ){
-      if( ingredient_list[ i ] == ingredient_name ){
-        already_in_list = true;
-      }
-    }
+    //check if clicked thumbnail is ingredient element
+    if( ingredient_name != "Fruechte" && ingredient_name != "Getreide" &&
+    ingredient_name != "Milchprodukte" && ingredient_name != "Fleisch") {
 
-    /*write html and save ingredient to ingredient_list*/
-    if( already_in_list == false ){
-      ingredient_list.push( ingredient_name );
-      $("#ingredient_list").append(
-        "<ul class='list-group'>" +
-          "<li class='list-group-item'>" +
-            "<button type='submit' class='btn btn-default'>" +
-              "<span class='glyphicon glyphicon-star-empty' aria-hidden='true'></span>" +
-              "<span class='sr-only'>Favorit</span>" +
-            "</button>" + " " +
-            $("#element_one").attr("alt") + " " +
-            "<button type='submit' class='btn btn-default'>" +
-              "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>" +
-              "<span class='sr-only'>Löschen</span>" +
-            "</button>" +
-          "</li>" +
-        "</ul>"
-      )
-    }else{
-      /*delete ingredient from ingredient_list and from the screen*/
-      var index = ingredient_list.indexOf( ingredient_name );
-      if( index > -1 ) ingredient_list.splice( index, 1 );
-      $("#ingredient_list").empty();
-    }
+      /*check if ingredient is already selected*/
+      for( var i = 0; i < ingredient_list.length; ++i ){
+        if( ingredient_list[ i ] == ingredient_name ){
+          already_in_list = true;
+        }
+      }
+
+      /*write html and save ingredient to ingredient_list*/
+      if( already_in_list == false ){
+        ingredient_list.push( ingredient_name );
+        $("#ingredient_list").append(
+          "<ul class='list-group' id=" + $(this).children('img').attr("alt") + ">" +
+            "<li class='list-group-item'>" +
+              "<button type='submit' class='btn btn-default'>" +
+                "<span class='glyphicon glyphicon-star-empty' aria-hidden='true'></span>" +
+                "<span class='sr-only'>Favorit</span>" +
+              "</button>" + " " +
+              $(this).children('img').attr("alt") + " " +
+              "<button type='submit' class='btn btn-default'>" +
+                "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>" +
+                "<span class='sr-only'>Löschen</span>" +
+              "</button>" +
+            "</li>" +
+          "</ul>"
+        )
+      }else{
+        /*delete ingredient from ingredient_list and from the screen*/
+        var index = ingredient_list.indexOf( ingredient_name );
+        if( index > -1 ) ingredient_list.splice( index, 1 );
+        $("#ingredient_list").children("ul").remove( "#" + ingredient_name );
+      }/*end else*/
+
+    }/* eind if not thumbnail*/
+  }));/*end of jquery onclick*/
+
+
+  /*==USER CLICKS TRASH==*/
+  $(".trash").on('click', (function(){
+    console.log("sd");
+    $(this).great-grandparent().remove();
   }));/*end of jquery onclick*/
 
 
