@@ -62,10 +62,179 @@ $(document).ready(function(){
     }
   );
 
+
   /*
-  ==INSERT STATIC DATA TO SQL DATABASE==
+  ==INSERT STATIC DATA TO SQL DATABASE IF IT DOES NOT EXIST==
+  1. errorHandler
+  2. insert statements in function insertData
+  3. if DB is empty - call insertData
   */
-  
+
+  function errorHandler(transaction, error) {
+    alert('Oje, da ist etwas mit der Datenbank schiefgegangen: '+error.message+' (Code '+error.code+')');
+    return true;
+  }
+
+  /*Inserts Data into the DB*/
+  function insertData(){
+
+    //the 4 categories
+    db.transaction(
+      function(transaction) {
+        transaction.executeSql(
+          "INSERT INTO category VALUES (1,'fleisch','img/category/fleisch.png'); "
+        );
+      }
+    );
+    db.transaction(
+      function(transaction) {
+        transaction.executeSql(
+          "INSERT INTO category VALUES (2,'getreide','img/category/getreide.png'); "
+        );
+      }
+    );
+    db.transaction(
+      function(transaction) {
+        transaction.executeSql(
+          "INSERT INTO category VALUES (3,'milchprodukte','img/category/milchprodukte.png'); "
+        );
+      }
+    );
+    db.transaction(
+      function(transaction) {
+        transaction.executeSql(
+          "INSERT INTO category VALUES (4,'fruechte','img/category/fruechte.png'); "
+        );
+      }
+    );
+
+    //ingredients
+    db.transaction(
+      function(transaction) {
+        transaction.executeSql(
+          "INSERT INTO ingredient VALUES (1,'apfel',0,'img/ingredient/apfel.png',4 ); "
+        );
+      }
+    );
+    db.transaction(
+      function(transaction) {
+        transaction.executeSql(
+          "INSERT INTO ingredient VALUES (2,'banane',0,'img/ingredient/banane.png',4 ); "
+        );
+      }
+    );
+    db.transaction(
+      function(transaction) {
+        transaction.executeSql(
+          "INSERT INTO ingredient VALUES (3,'blaubeeren',0,'img/ingredient/blaubeeren.png',4 ); "
+        );
+      }
+    );
+    db.transaction(
+      function(transaction) {
+        transaction.executeSql(
+          "INSERT INTO ingredient VALUES (4,'broccoli',0,'img/ingredient/broccoli.png',4 ); "
+        );
+      }
+    );
+    db.transaction(
+      function(transaction) {
+        transaction.executeSql(
+          "INSERT INTO ingredient VALUES (5,'pilze',0,'img/ingredient/pilze.png',4 ); "
+        );
+      }
+    );
+    db.transaction(
+      function(transaction) {
+        transaction.executeSql(
+          "INSERT INTO ingredient VALUES (6,'erbsen',0,'img/ingredient/erbsen.png',4 ); "
+        );
+      }
+    );
+    db.transaction(
+      function(transaction) {
+        transaction.executeSql(
+          "INSERT INTO ingredient VALUES (7,'erdbeere',0,'img/ingredient/erdbeere.png',4 ); "
+        );
+      }
+    );
+    db.transaction(
+      function(transaction) {
+        transaction.executeSql(
+          "INSERT INTO ingredient VALUES (8,'karotte',0,'img/ingredient/karotte.png',4 ); "
+        );
+      }
+    );
+    db.transaction(
+      function(transaction) {
+        transaction.executeSql(
+          "INSERT INTO ingredient VALUES (9,'kartoffel',0,'img/ingredient/kartoffel.png',4 ); "
+        );
+      }
+    );
+    db.transaction(
+      function(transaction) {
+        transaction.executeSql(
+          "INSERT INTO ingredient VALUES (10,'kuerbis',0,'img/ingredient/kuerbis.png',4 ); "
+        );
+      }
+    );
+    db.transaction(
+      function(transaction) {
+        transaction.executeSql(
+          "INSERT INTO ingredient VALUES (11,'melanzani',0,'img/ingredient/melanzani.png',4 ); "
+        );
+      }
+    );
+    db.transaction(
+      function(transaction) {
+        transaction.executeSql(
+          "INSERT INTO ingredient VALUES (12,'paprika',0,'img/ingredient/paprika.png',4 ); "
+        );
+      }
+    );
+
+    //recipes
+    db.transaction(
+      function(transaction) {
+        transaction.executeSql(
+          "INSERT INTO recipe VALUES (1,'eintopf','alles in den eintopf', 'img/ingredient/paprika.png' ); "
+        );
+      }
+    );
+
+    //recipe_has_ingredient
+    db.transaction(
+      function(transaction) {
+        transaction.executeSql(
+          //id, id_recipe, id_ingredient
+          "INSERT INTO recipe VALUES (1, 1, 1 ); "
+        );
+      }
+    );
+
+  }
+
+  /*Test if there are rows in DB*/
+  db.transaction(
+    function(transaction) {
+      transaction.executeSql(
+        'SELECT * FROM category,ingredient,recipe; ',
+        [],
+        function (transaction, result) {
+          row = [];
+          for( var i = 0; i < result.rows.length; i++ ){
+            row[ i ] = result.rows.item( i );
+          } /*end for*/
+          if( row.length < 2 ){
+            insertData();
+          }
+        }, /*end function (transaction, result) */
+        errorHandler
+      ); /*end transaction.executeSql*/
+    }/*end function(transaction)*/
+  );/*end db.transaction*/
+
 
 
   /*
@@ -74,11 +243,6 @@ $(document).ready(function(){
   the elements below in the slide element (carousel),
   are filled with the images of the ingredients of the specific categorie
   */
-  function errorHandler(transaction, error) {
-    alert('Oje, da ist etwas mit der Datenbank schiefgegangen: '+error.message+' (Code '+error.code+')');
-    return true;
-  }
-
   $("#fruechte").on('click', (function(){
     if(slideshow_open){
       $("#myCarousel").hide();
