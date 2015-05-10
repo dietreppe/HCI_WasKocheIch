@@ -24,10 +24,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="css/rezepte.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="js/bootstrap.js"></script>
-  <script src="js/database.js"></script>
+  <script src="js/recipelist.js"></script>
   <script language="JavaScript" src="js/rezepte.js"></script>
   <title>Rezepte</title>
 
@@ -39,41 +38,45 @@
   }
   </style>
 </head>
-<body bgcolor="#4444FF" >
-  <!-- SEARCHBAR, SETTINGS BUTTON ON TOP-->
-  <nav class="navbar navbar-fixed-top">
-    <div class="container-fluid">
-      <div class="navbar-color">
-        <form class="navbar-form navbar-left" role="search">
-        <!-- Go Back button -->
-        <a href=index.html>
-          <button type="button" class="btn btn-default">Go back</button>
-        </a>
+<body>
 
-            Rezepte
-
-          <div class="float-right">
-
-            <button type="button" class="btn btn-default">
-              <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-              <span class="sr-only">Einstellungen</span>
-            </button>
-          </div>
-        </form>
-      </div>
-    </div><!-- /.container-fluid -->
-  </nav>
-
-  <!-- LIST OF MATCHING RECEPIES-->
+  <!-- HEADING -->
   <div class="container-fluid">
-    <ul class="list-group">
+    <form role="search">
+    <a href="index.html">
+      <button type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+        <span class="sr-only">Home</span>
+      </button>
+    </a>
+    <div class="float-right">
+      Ausgewähltes Rezept
+      <a href="settings.html">
+        <button type="button" class="btn btn-default">
+          <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+          <span class="sr-only">Einstellungen</span>
+        </button>
+      </a>
+    </div>
+    </form>
+    <br>
 
-      <script language="JavaScript" src="js/rezepte.js">rezepte();</script>
+    <!-- CONTENT: IMAGE, INGREDIENTS, DESCRIPTION -->
+    <img src="img/recipe/eintopf.png">
+    <br><br>
+    <p>300 g Zwiebel</p>
+    <p>400 g Tomaten</p>
+    <p>1 kg Kartoffel</p>
+    <br><br>
 
 
-    </ul>
+    <!-- BUTTONS -->
+    <a href="recipelist.html">
+      <button type="button" class="btn btn-default">Zurück</button>
+    </a>
 
-  </div> <!-- /.container-fluid -->
+  </div><!-- /.container-fluid -->
+
 
 
 </body>

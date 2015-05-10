@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/recipelist.js"></script>
+  <script language="JavaScript" src="js/rezepte.js"></script>
+  <title>Rezepte</title>
+
+  <style>
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+  </style>
+</head>
+<body>
+
+  <!-- HEADING -->
+  <div class="container-fluid">
+    <form role="search">
+    <a href="index.html">
+      <button type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+        <span class="sr-only">Home</span>
+      </button>
+    </a>
+    <div class="float-right">
+      Rezepte
+      <a href="settings.html">
+        <button type="button" class="btn btn-default">
+          <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+          <span class="sr-only">Einstellungen</span>
+        </button>
+      </a>
+    </div>
+    </form>
+    <br>
+
+    <!-- LIST OF MATCHING RECEPIES-->
+    <div id="ingredient_list">
+      <ul class="list-group">
+        <a href="recipepage.html" class="thumbnail">
+          <li class="list-group-item" class="no_underline">
+            <img src="img/recipe/eintopf.png" class ="recipe_image" alt="Banane" id="recipe_one">
+            Eintopf
+          </li>
+        </a>
+      </ul>
+      <ul class="list-group">
+        <a href="recipepage.html" class="thumbnail">
+          <li class="list-group-item" class="no_underline">
+            <img src="img/recipe/minestrone.png" class ="recipe_image" alt="Banane" id="recipe_one">
+            Minestrone
+          </li>
+        </a>
+      </ul>
+    </diV>
+
+
+    <!-- BUTTONS -->
+    <a href="index.html">
+      <button type="button" class="btn btn-default">Zurück</button>
+    </a>
+
+  </div><!-- /.container-fluid -->
+
+
+
+</body>
+</html>

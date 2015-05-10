@@ -1,10 +1,25 @@
 # HCI_WasKocheIch
-"Was Koche Ich" is a simple app that searches for recipes for certain ingredients.
-It is a University Vienna computer science students project for the subject Human-Computer-Interaction (HCI) in the summer semester 2015.
 
-IMPLEMENTATION
-The app is written in HTML, CSS and JavaScript and build with Cordova 5 for Android API 16 (Jelly Bean).
+Projektthema: Rezeptfinder - "Was Koche Ich"
 
-TEAM
-Uni Wien, HCI, SoSe 2015, Group 1, Team 8
-Natalia Okunska, Werner Lindeis, Martin Treppe, Fabian Türk
+Team-Nr: 8
+Gruppen-Nr: 1
+
+Framework:		[Cordova - Android]
+API-Version:	[Android Jelly Bean API 16]
+
+Geraet(e), auf dem(denen) getestet wurde:
+[Nexus 5]
+
+Entwicklungsumgebung (für Android relevant):
+[Android Studio] 
+
+Externe Libraries und Frameworks:
+[Bootstrap]
+
+Dauer der Entwicklung:
+[ca. 50 Stunden]
+
+Weitere Anmerkungen:
+[Zur Speicherung der Daten wurde die WebSQL DB verwendet.]
+

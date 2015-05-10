@@ -62,6 +62,11 @@ $(document).ready(function(){
     }
   );
 
+  /*
+  ==INSERT STATIC DATA TO SQL DATABASE==
+  */
+  
+
 
   /*
   ==USER SELECTS CATEGORY==
@@ -174,6 +179,10 @@ $(document).ready(function(){
       $("#ingredient_list").empty();
     }
   }));/*end of jquery onclick*/
+
+
+  /*==USER CLICKS COOK BUTTON==*/
+
 
 
 }); /*end of document ready*/

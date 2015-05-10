@@ -12,7 +12,7 @@ html {
 }
 body {
   margin: 0;
-  padding-top: 70px; 
+  padding-top: 20px; /*edit fabian*/
 }
 article,
 aside,
@@ -1106,13 +1106,13 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #337ab7;
+  /*color: #337ab7;*/
   text-decoration: none;
 }
 a:hover,
 a:focus {
   color: #23527c;
-  text-decoration: underline;
+  text-decoration: none; /*edit fabian was underlin*/
 }
 a:focus {
   outline: thin dotted;
@@ -4920,7 +4920,8 @@ a.badge:focus {
 a.thumbnail:hover,
 a.thumbnail:focus,
 a.thumbnail.active {
-  border-color: #337ab7;
+  /*border-color: #337ab7;*/
+  background-color: #eeeeee; /*edit fabian*/
 }
 .thumbnail .caption {
   padding: 9px;
@@ -6594,8 +6595,14 @@ button.close {
   }
 }
 
-
+/*added by fabian*/
 .float-right {
    float: right;
 }
+.recipe_image {
+   width: 15%;
+   height: 15%;
+}
+
+
 /*# sourceMappingURL=bootstrap.css.map */
