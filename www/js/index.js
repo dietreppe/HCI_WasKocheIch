@@ -262,6 +262,8 @@ $(document).ready(function(){
               for( var i = 0; i < result.rows.length; i++ ){
                 row[ i ] = result.rows.item( i );
                 if( i == (result.rows.length-1) ){
+
+                  //first 16 elements
                   $("#element_one").attr({
                     "alt" : row[ 0 ].name,
                     "src" : row[ 0 ].image_link
@@ -294,6 +296,9 @@ $(document).ready(function(){
                     "alt" : row[ 7 ].name,
                     "src" : row[ 7 ].image_link
                   });
+
+                  //second sixteen elements
+
                 } /*end if*/
               } /*end for*/
             }, /*end function (transaction, result) */
@@ -307,42 +312,51 @@ $(document).ready(function(){
 
 
   /*==USER SELECTS INGREDIENT==*/
-  $("#element_one").on('click', (function(){
-    var ingredient_name = $("#element_one").attr("alt");
+  $(".thumbnail").on('click', (function(){
+    var ingredient_name = $(this).children('img').attr("alt");
     var already_in_list = false;
 
-    /*check if ingredient is already selected*/
-    for( var i = 0; i < ingredient_list.length; ++i ){
-      if( ingredient_list[ i ] == ingredient_name ){
-        already_in_list = true;
-      }
-    }
+    //check if clicked thumbnail is ingredient element
+    if( ingredient_name != "Fruechte" && ingredient_name != "Getreide" &&
+    ingredient_name != "Milchprodukte" && ingredient_name != "Fleisch") {
 
-    /*write html and save ingredient to ingredient_list*/
-    if( already_in_list == false ){
-      ingredient_list.push( ingredient_name );
-      $("#ingredient_list").append(
-        "<ul class='list-group'>" +
-          "<li class='list-group-item'>" +
-            "<button type='submit' class='btn btn-default'>" +
-              "<span class='glyphicon glyphicon-star-empty' aria-hidden='true'></span>" +
-              "<span class='sr-only'>Favorit</span>" +
-            "</button>" + " " +
-            $("#element_one").attr("alt") + " " +
-            "<button type='submit' class='btn btn-default'>" +
-              "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>" +
-              "<span class='sr-only'>Löschen</span>" +
-            "</button>" +
-          "</li>" +
-        "</ul>"
-      )
-    }else{
-      /*delete ingredient from ingredient_list and from the screen*/
-      var index = ingredient_list.indexOf( ingredient_name );
-      if( index > -1 ) ingredient_list.splice( index, 1 );
-      $("#ingredient_list").empty();
-    }
+      /*check if ingredient is already selected*/
+      for( var i = 0; i < ingredient_list.length; ++i ){
+        if( ingredient_list[ i ] == ingredient_name ){
+          already_in_list = true;
+        }
+      }
+
+      /*write html and save ingredient to ingredient_list*/
+      if( already_in_list == false ){
+        ingredient_list.push( ingredient_name );
+        $("#ingredient_list").append(
+          "<ul class='list-group' id=" + $(this).children('img').attr("alt") + ">" +
+            "<li class='list-group-item'>" +
+              "<button type='submit' class='btn btn-default'>" +
+                "<span class='glyphicon glyphicon-star-empty' aria-hidden='true'></span>" +
+                "<span class='sr-only'>Favorit</span>" +
+              "</button>" + " " +
+              $(this).children('img').attr("alt") + " " +
+              "<button type='submit' class='btn btn-default'>" +
+                "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>" +
+                "<span class='sr-only'>Löschen</span>" +
+              "</button>" +
+            "</li>" +
+          "</ul>"
+        )
+      }else{
+        /*delete ingredient from ingredient_list and from the screen*/
+        var index = ingredient_list.indexOf( ingredient_name );
+        if( index > -1 ) ingredient_list.splice( index, 1 );
+        $("#ingredient_list").children("ul").remove( "#" + ingredient_name );
+      }/*end else*/
+
+    }/* eind if not thumbnail*/
   }));/*end of jquery onclick*/
+
+
+  /*==USER CLICKS DELETS INGREDIENT FROM LIST==*/
 
 
   /*==USER CLICKS COOK BUTTON==*/
