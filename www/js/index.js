@@ -230,6 +230,14 @@ $(document).ready(function(){
         );
       }
     );
+    db.transaction(
+      function(transaction) {
+        //id, id_recipe, id_ingredient
+        transaction.executeSql(
+          "INSERT INTO recipe_has_ingredient VALUES (3, 2, 1 ); "
+        );
+      }
+    );
 
   }
 
@@ -350,15 +358,17 @@ $(document).ready(function(){
         ingredient_list.push( ingredient_name );
         localStorage[ "ingredient_list" ] = JSON.stringify( ingredient_list );
         $("#ingredient_list").append(
-          "<ul class='list-group' id=" + $(this).children('img').attr("alt") + ">" +
+          "<ul class='list-group' id='" + $(this).children('img').attr("alt") + "'>" +
             "<li class='list-group-item'>" +
-              "<button type='submit' class='btn btn-default'>" +
-                "<span class='glyphicon glyphicon-star-empty' aria-hidden='true'></span>" +
+              "<button type='submit' class='btn btn-default' id='" + $(this).children('img').attr("alt") + "'>" +
+                "<span class='glyphicon glyphicon-star-empty' aria-hidden='true' id='" + $(this).children('img').attr("alt") + "'>" +
+                "</span>" +
                 "<span class='sr-only'>Favorit</span>" +
               "</button>" + " " +
               $(this).children('img').attr("alt") + " " +
-              "<button type='submit' class='btn btn-default'>" +
-                "<span class='glyphicon glyphicon-trash' aria-hidden='true' id='trash'></span>" +
+              "<button type='submit' class='btn btn-default' id='" + $(this).children('img').attr("alt") + "'>" +
+                "<span class='glyphicon glyphicon-trash' aria-hidden='true' id='" + $(this).children('img').attr("alt") + "'>" +
+                "</span>" +
                 "<span class='sr-only'>Löschen</span>" +
               "</button>" +
             "</li>" +
@@ -384,9 +394,21 @@ $(document).ready(function(){
 
 
   /*==USER CLICKS TRASH==*/
-  $("#trash").on('click', (function(){
-    console.log("sd");
-    $(this).great-grandparent().remove();
+  $("#ingredient_list").on('click', (function(event){
+
+    //delete list element
+    var element_name = event.target.id;
+    $(this).children("#" + element_name).remove();
+    var index = ingredient_list.indexOf( element_name );
+    if( index > -1 ) ingredient_list.splice( index, 1 );
+    localStorage[ "ingredient_list" ] = JSON.stringify( ingredient_list );
+
+    //hide cook button if no ingredients are selected, else show it
+    if( ingredient_list.length < 1 ){
+      $("#cook_button").hide();
+    }else{
+      $("#cook_button").show();
+    }
   }));/*end of jquery onclick*/
 
 

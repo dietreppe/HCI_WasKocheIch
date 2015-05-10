@@ -10,7 +10,7 @@ $(document).ready(function(){
   var maxSize = 2 * 1024 * 1024;
   db = openDatabase(nameOfDB, version, displayName, maxSize);
 
-  /*==USER CLICKS COOK BUTTON==*/
+  /*==CREATING THE LIST==*/
     //take ingredient_list from lokalStorage
     ingredient_list = JSON.parse(localStorage["ingredient_list"]);
 
@@ -45,7 +45,7 @@ $(document).ready(function(){
                   console.log( row[ i ] );
                   $("#ingredient_list").append(
                     "<ul class='list-group'>" +
-                      "<a href='recipepage.html' class='thumbnail'>" +
+                      "<a href='#' class='thumbnail'>" +
                         "<li class='list-group-item' class='no_underline'>" +
                           "<img src=" + row[i].image_link + " class ='recipe_image'" +
                           "alt=" + row[i].name + " id=" + row[i].name + ">" +
@@ -62,6 +62,12 @@ $(document).ready(function(){
         }/*end outer for*/
       }/*end of function(transaction)*/
     );/*end db.transaction*/
+
+    $("#ingredient_list").on('click', (function(){
+      console.log("hallo");
+      console.log($(this).children().first().children().first().id);
+      localStorage.recipeName = $(this).children().first().children().first().id;
+    }));/*end of jquery onclick*/
 
 
 }); /*end of document ready*/
