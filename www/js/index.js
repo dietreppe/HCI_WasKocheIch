@@ -201,14 +201,14 @@ $(document).ready(function(){
     db.transaction(
       function(transaction) {
         transaction.executeSql(
-          "INSERT INTO recipe VALUES (1,'Eintopf','alles in den eintopf', 'img/recipe/eintopf.png' ); "
+          "INSERT INTO recipe VALUES (1,'Eintopf','alles in den eintopf', 'img/recipe/eintopf/eintopf.png' ); "
         );
       }
     );
     db.transaction(
       function(transaction) {
         transaction.executeSql(
-          "INSERT INTO recipe VALUES (2,'Minestrone','alles in den minestrone', 'img/recipe/minestrone.png' ); "
+          "INSERT INTO recipe VALUES (2,'Minestrone','alles in den minestrone', 'img/recipe/minestrone/minestrone.png' ); "
         );
       }
     );

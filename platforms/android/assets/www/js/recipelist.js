@@ -10,7 +10,7 @@ $(document).ready(function(){
   var maxSize = 2 * 1024 * 1024;
   db = openDatabase(nameOfDB, version, displayName, maxSize);
 
-  /*==USER CLICKS COOK BUTTON==*/
+  /*==CREATING THE LIST==*/
     //take ingredient_list from lokalStorage
     ingredient_list = JSON.parse(localStorage["ingredient_list"]);
 
@@ -42,11 +42,10 @@ $(document).ready(function(){
                 //gefundenen rezepte anzeigen
                 row[ i ] = result.rows.item( i );
                 if( $("#" + row[i].name).length == 0 ){//check if recipe is already in list
-                  console.log( row[ i ] );
                   $("#ingredient_list").append(
-                    "<ul class='list-group'>" +
-                      "<a href='recipepage.html' class='thumbnail'>" +
-                        "<li class='list-group-item' class='no_underline'>" +
+                    "<ul class='list-group' id='" + row[i].name + "'>" +
+                      "<a href='#' class='thumbnail' id='" + row[i].name + "'>" +
+                        "<li class='list-group-item' class='no_underline' id='" + row[i].name + "'>" +
                           "<img src=" + row[i].image_link + " class ='recipe_image'" +
                           "alt=" + row[i].name + " id=" + row[i].name + ">" +
                           " " + row[i].name +
@@ -62,6 +61,11 @@ $(document).ready(function(){
         }/*end outer for*/
       }/*end of function(transaction)*/
     );/*end db.transaction*/
+
+    $("#ingredient_list").on('click', (function(event){
+      localStorage.recipeName = event.target.id;
+      window.location.href = "recipepage.html";
+    }));/*end of jquery onclick*/
 
 
 }); /*end of document ready*/

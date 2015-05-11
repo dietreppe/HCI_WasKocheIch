@@ -42,11 +42,10 @@ $(document).ready(function(){
                 //gefundenen rezepte anzeigen
                 row[ i ] = result.rows.item( i );
                 if( $("#" + row[i].name).length == 0 ){//check if recipe is already in list
-                  console.log( row[ i ] );
                   $("#ingredient_list").append(
-                    "<ul class='list-group'>" +
-                      "<a href='#' class='thumbnail'>" +
-                        "<li class='list-group-item' class='no_underline'>" +
+                    "<ul class='list-group' id='" + row[i].name + "'>" +
+                      "<a href='#' class='thumbnail' id='" + row[i].name + "'>" +
+                        "<li class='list-group-item' class='no_underline' id='" + row[i].name + "'>" +
                           "<img src=" + row[i].image_link + " class ='recipe_image'" +
                           "alt=" + row[i].name + " id=" + row[i].name + ">" +
                           " " + row[i].name +
@@ -63,10 +62,9 @@ $(document).ready(function(){
       }/*end of function(transaction)*/
     );/*end db.transaction*/
 
-    $("#ingredient_list").on('click', (function(){
-      console.log("hallo");
-      console.log($(this).children().first().children().first().id);
-      localStorage.recipeName = $(this).children().first().children().first().id;
+    $("#ingredient_list").on('click', (function(event){
+      localStorage.recipeName = event.target.id;
+      window.location.href = "recipepage.html";
     }));/*end of jquery onclick*/
 
 
